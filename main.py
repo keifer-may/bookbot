@@ -13,11 +13,22 @@ def cntchars(text):
     return mydict
 
 def report(title):
-    pass
+    head = f'--- Begin report of {title} ---'
+    tail = '--- End report ---'
 
-with open('books/frankenstein.txt', 'r') as book2:
-    text = book2.read()
+    book = open(title, 'r')
+    text = book.read()
     wordcount = wrdcnt(text)
-    print(wordcount)
+    ##print(wordcount)
     charcount = cntchars(text)
-    print(charcount)
+    ##print(charcount)
+
+    book.close()
+
+    print(head)
+    print(f'{wordcount} words found in the document\n')
+    for char in charcount:
+        print(f"The '{char}' character was found {charcount[char]} times")
+    print(tail)
+
+report('books/frankenstein.txt')
